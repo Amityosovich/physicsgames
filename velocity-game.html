@@ -491,6 +491,14 @@ function applyResponsiveLayout(){
     content.append(controls);
     content.append(sceneCard);
     content.append(xt);
+    // Explicit flex order is required because the phone CSS assigns order to
+    // the controls/scene; DOM order alone is not enough.
+    vt.style.order='1';
+    controls.style.order='2';
+    sceneCard.style.order='3';
+    xt.style.order='4';
+    vt.style.height='245px';
+    vt.style.minHeight='245px';
     xt.style.height='235px';
     xt.style.minHeight='235px';
     // redraw canvases after their new sizes settle
@@ -498,6 +506,12 @@ function applyResponsiveLayout(){
   }else if(xt.dataset.mobileMoved){
     delete xt.dataset.mobileMoved;
     xt.classList.remove('panel','mobile-x-card');
+    vt.style.order='';
+    controls.style.order='';
+    sceneCard.style.order='';
+    xt.style.order='';
+    vt.style.height='';
+    vt.style.minHeight='';
     xt.style.height='';
     xt.style.minHeight='';
     stack.append(vt,xt);
