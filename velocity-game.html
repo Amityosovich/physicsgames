@@ -180,14 +180,16 @@ coinAudio.preload='auto';
 successAudio.preload='auto';
 
 function unlockAudio(){
-  // Explicitly prime both sounds during a real user gesture.
+  // Prime audio silently during an intentional game action.
   [coinAudio,successAudio,accumAudio].forEach(a=>{
     try{
-      a.volume=0.001;
+      const wasMuted=a.muted;
+      a.muted=true;
       const p=a.play();
-      if(p && p.then) p.then(()=>{a.pause();a.currentTime=0;a.volume=1;}).catch(()=>{a.volume=1;});
-      else {a.pause();a.currentTime=0;a.volume=1;}
-    }catch(e){a.volume=1;}
+      const finish=()=>{a.pause();a.currentTime=0;a.muted=wasMuted;};
+      if(p && p.then) p.then(finish).catch(()=>{a.muted=wasMuted;});
+      else finish();
+    }catch(e){}
   });
 }
 function coinTick(progress=0){
@@ -469,7 +471,7 @@ document.getElementById('muteBtn').onclick=()=>{
   b.textContent=soundMuted?'🔇 מושתק':'🔊 סאונד פעיל';
   b.style.background=soundMuted?'#f2f4f6':'#fff';
 };
-document.addEventListener('pointerdown',unlockAudio,{once:true});
+// Audio is unlocked only when the student presses the start button, not when choosing a character.
 window.addEventListener('resize',()=>{drawGraph();drawXGraph()});buildStartCharacters();renderProgress();drawGraph();drawXGraph();
 
 function applyResponsiveLayout(){
