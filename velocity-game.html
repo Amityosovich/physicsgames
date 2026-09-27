@@ -122,7 +122,7 @@ canvas{width:100%;height:100%;display:block;background:#fff;border-radius:9px}.c
 </style>
 </head>
 <body>
-<div class="start-screen" id="startScreen"><div class="start-card"><div style="font-size:55px">📈</div><h1>אתגר גרף מהירות–זמן</h1><p>בכל שלב יוצג גרף מטרה. עליכם לבחור את המהירות ההתחלתית, התאוצה וזמני שינוי התאוצה כך שהתנועה שלכם תתאים לגרף.</p><input id="nameInput" class="name-input" placeholder="מה השם שלך?" maxlength="30">
+<div class="start-screen" id="startScreen"><div class="start-card"><div style="font-size:55px">📈</div><h1>אתגר גרף מהירות–זמן</h1><p>בכל שלב יוצג גרף מטרה. עליכם לבחור את המהירות ההתחלתית, התאוצה וזמני שינוי התאוצה כך שהתנועה שלכם תתאים לגרף.<br><strong>שימו לב גם לגרף המקום כתלות בזמן שמתקבל.</strong></p><input id="nameInput" class="name-input" placeholder="מה השם שלך?" maxlength="30">
 <div style="font-weight:900;margin-top:8px">לשון פנייה</div>
 <div class="address-choice" role="radiogroup" aria-label="לשון פנייה">
   <label><input type="radio" name="addressForm" value="male" checked> זכר</label>
@@ -476,7 +476,6 @@ function applyResponsiveLayout(){
   const content=document.querySelector('.content');
   const left=document.querySelector('.left');
   const right=document.querySelector('.right');
-  const target=document.querySelector('.target-card');
   const stack=document.querySelector('.graphs-stack');
   const subs=stack?[...stack.querySelectorAll('.subgraph')]:[];
   const sceneCard=document.querySelector('.scene-card');
@@ -488,7 +487,7 @@ function applyResponsiveLayout(){
       xt.dataset.mobileMoved='1';
       xt.classList.add('panel','mobile-x-card');
     }
-    content.append(target);
+    content.append(vt);
     content.append(controls);
     content.append(sceneCard);
     content.append(xt);
@@ -502,8 +501,8 @@ function applyResponsiveLayout(){
     xt.style.height='';
     xt.style.minHeight='';
     stack.append(vt,xt);
-    left.append(target);
-    left.append(sceneCard);
+    left.append(stack);
+    right.append(sceneCard);
     right.append(controls);
     requestAnimationFrame(()=>{try{drawGraph();drawXGraph()}catch(e){}});
   }
