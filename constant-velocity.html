@@ -92,13 +92,16 @@
   canvas{height:285px!important}
 }
 </style>
+<style id="full-keyboard-label-fix">
+.param-row label sub{font-size:.72em;vertical-align:sub;line-height:0}
+</style>
 </head><body><div class="start-screen" id="startScreen"><div class="start-box"><h1>תנועה בקו ישר</h1><p>בחרו את סוג התנועה שתרצו לחקור</p><div class="mode-cards"><button class="mode-card" id="chooseV"><div>מהירות קבועה</div><svg viewBox="0 0 300 150" aria-label="גרף מקום זמן ישר"><line x1="38" y1="120" x2="280" y2="120" stroke="#17212b" stroke-width="3"/><line x1="38" y1="120" x2="38" y2="15" stroke="#17212b" stroke-width="3"/><text x="265" y="143" font-size="17">t</text><text x="15" y="24" font-size="17">x</text><line x1="55" y1="105" x2="260" y2="30" stroke="#1769e8" stroke-width="6" stroke-linecap="round"/></svg></button><button class="mode-card" id="chooseA"><div>תאוצה קבועה</div><svg viewBox="0 0 300 150" aria-label="גרף מקום זמן פרבולי"><line x1="38" y1="120" x2="280" y2="120" stroke="#17212b" stroke-width="3"/><line x1="38" y1="120" x2="38" y2="15" stroke="#17212b" stroke-width="3"/><text x="265" y="143" font-size="17">t</text><text x="15" y="24" font-size="17">x</text><path d="M55 108 Q150 105 260 25" fill="none" stroke="#1769e8" stroke-width="6" stroke-linecap="round"/></svg></button></div></div></div><button id="homeBtn" class="home-btn" aria-label="חזרה למסך הבית" title="חזרה למסך הבית">⌂</button><div class="app">
 <div class="top">
 <section class="panel"><h2>1. בחרו דמויות</h2><div class="character-selects"><div class="character-select-row"><span class="blue">1</span><button id="charSelect0" class="character-select" type="button"></button></div><div class="character-select-row"><span class="orange">2</span><button id="charSelect1" class="character-select" type="button"></button></div></div></section>
 <section class="panel"><h2>2. בחרו כיוון חיובי</h2><div class="segment"><button class="active" data-dir="right">ימין</button><button data-dir="left">שמאל</button></div></section>
 <section class="panel params-panel"><h2>3. הזינו פרמטרים התחלתיים</h2><div class="params-wrap">
-<div class="person-params"><div class="person-title blue" id="p0title"></div><div class="param-row"><label>x₀</label><div class="param-input-line"><input id="x00" type="number" step="0.1" value="-1.0"><span class="param-unit">m</span></div></div><div class="param-row"><label>v</label><div class="param-input-line"><input id="v00" type="number" step="0.1" value="1.0"><span class="param-unit">m/s</span></div></div><div class="param-row start-time-row"><label>t₀</label><div class="param-input-line"><input id="tstart0" type="number" min="0" step="0.1" value="0"><span class="param-unit">s</span></div></div></div>
-<div class="person-params"><div class="person-title orange" id="p1title"></div><div class="param-row"><label>x₀</label><div class="param-input-line"><input id="x01" type="number" step="0.1" value="2.5"><span class="param-unit">m</span></div></div><div class="param-row"><label>v</label><div class="param-input-line"><input id="v01" type="number" step="0.1" value="-0.7"><span class="param-unit">m/s</span></div></div><div class="param-row start-time-row"><label>t₀</label><div class="param-input-line"><input id="tstart1" type="number" min="0" step="0.1" value="0"><span class="param-unit">s</span></div></div></div>
+<div class="person-params"><div class="person-title blue" id="p0title"></div><div class="param-row"><label><i>x</i><sub>0</sub></label><div class="param-input-line"><input id="x00" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="-1.0"><span class="param-unit">m</span></div></div><div class="param-row"><label>v</label><div class="param-input-line"><input id="v00" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="1.0"><span class="param-unit">m/s</span></div></div><div class="param-row start-time-row"><label><i>t</i><sub>0</sub></label><div class="param-input-line"><input id="tstart0" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" min="0" step="0.1" value="0"><span class="param-unit">s</span></div></div></div>
+<div class="person-params"><div class="person-title orange" id="p1title"></div><div class="param-row"><label><i>x</i><sub>0</sub></label><div class="param-input-line"><input id="x01" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="2.5"><span class="param-unit">m</span></div></div><div class="param-row"><label>v</label><div class="param-input-line"><input id="v01" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="-0.7"><span class="param-unit">m/s</span></div></div><div class="param-row start-time-row"><label><i>t</i><sub>0</sub></label><div class="param-input-line"><input id="tstart1" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" min="0" step="0.1" value="0"><span class="param-unit">s</span></div></div></div>
 <div class="extra"><h3>אפשרויות נוספות</h3><label><input id="showVectors" type="checkbox" checked>הצג חצים</label><label><input id="showGrid" type="checkbox" checked>הצג רשת</label></div>
 </div></section></div>
 <div id="characterPicker" class="character-picker"><div class="picker-title">בחרו דמות</div><div id="pickerGrid" class="picker-grid"></div></div>
@@ -196,4 +199,26 @@ for(let i=0;i<2;i++){
 function fit(c){const d=devicePixelRatio||1,r=c.getBoundingClientRect();c.width=Math.round(r.width*d);c.height=Math.round(r.height*d);const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{x,w:r.width,h:r.height}}function ns(raw){const p=10**Math.floor(Math.log10(raw||1)),f=raw/p;return(f<=1?1:f<=2?2:f<=5?5:10)*p}function rng(vals,def){if(!vals.length)return def;let mn=Math.min(...vals),mx=Math.max(...vals);if(mx-mn<.2){mn-=1;mx+=1}let s=ns((mx-mn)/6);return[Math.floor(mn/s)*s,Math.ceil(mx/s)*s,s]}
 function graph(id,key,label){const c=document.getElementById(id),{x,w:W,h:H}=fit(c),mobile=W<=600,L=mobile?68:58,R=mobile?22:16,T=mobile?34:12,B=52,pw=W-L-R,ph=H-T-B,tm=Math.max(10,Math.ceil(t/5)*5),vals=[];histories.slice(0,selected.length).forEach(a=>a.forEach(p=>vals.push(p[key])));let [mn,mx,st]=key==='x'?[-2,4,1]:rng(vals,[-2,2,1]);if(key==='v'){const m=Math.max(1,Math.abs(mn),Math.abs(mx)),s=ns(m/4);mn=-4*s;mx=4*s;st=s}const X=q=>L+pw*q/tm,Y=q=>T+ph*(mx-q)/(mx-mn);x.clearRect(0,0,W,H);x.fillStyle='#fff';x.fillRect(0,0,W,H);x.font='12px Arial';x.fillStyle='#536170';for(let v=mn;v<=mx+st*.1;v+=st){const yy=Y(v);if(showGrid.checked){x.strokeStyle='#d9e0e6';x.setLineDash([5,4]);x.beginPath();x.moveTo(L,yy);x.lineTo(W-R,yy);x.stroke()}x.setLineDash([]);x.textAlign='right';x.fillText(Math.abs(st)<1?v.toFixed(1):v.toFixed(0),L-7,yy+4)}const yZero=(mn<=0&&mx>=0)?Y(0):H-B;for(let j=0;j<=5;j++){const xx=L+pw*j/5;if(showGrid.checked){x.strokeStyle='#d9e0e6';x.setLineDash([5,4]);x.beginPath();x.moveTo(xx,T);x.lineTo(xx,H-B);x.stroke()}x.setLineDash([]);x.strokeStyle='#687681';x.lineWidth=1.5;x.beginPath();x.moveTo(xx,yZero-5);x.lineTo(xx,yZero+5);x.stroke();x.fillStyle='#536170';x.font='12px Arial';x.textAlign='center';const ly=Math.min(H-B+18,yZero+18);x.fillText((tm*j/5).toFixed(0),xx,ly)}x.strokeStyle='#687681';x.lineWidth=1.5;x.beginPath();x.moveTo(L,T);x.lineTo(L,H-B);x.moveTo(L,yZero);x.lineTo(W-R,yZero);x.stroke();x.fillStyle='#111';x.font='italic 16px Georgia';x.textAlign='left';if(mobile){x.fillText(label,L-2,22);x.textAlign='right';x.fillText('t (s)',W-R-4,Math.max(T+18,Math.min(H-B-8,yZero-9)))}else{x.fillText('t (s)',W-R-30,Math.max(T+16,Math.min(H-B-6,yZero-7)));x.fillText(label,8,17)};histories.slice(0,selected.length).forEach((a,i)=>{if(!a.length)return;x.strokeStyle=colors[i];x.lineWidth=3;x.beginPath();a.forEach((p,j)=>j?x.lineTo(X(p.t),Y(p[key])):x.moveTo(X(p.t),Y(p[key])));x.stroke()})}
 function drawGraphs(){graph('xGraph','x','x (m)');graph('vGraph','v','v (m/s)')}window.onresize=()=>{render();drawGraphs()};buildCharacters();refresh();drawAxis();document.querySelectorAll('.arow').forEach(e=>e.style.display='none');sample();render();drawGraphs();
-</script></body></html>
+</script><script id="full-keyboard-number-validation">
+(()=>{
+ const ids=["x00","v00","tstart0","x01","v01","tstart1"], lastGood={};
+ const norm=s=>String(s).trim().replace(",",".");
+ ids.forEach(id=>{
+   const el=document.getElementById(id); if(!el)return;
+   lastGood[id]=el.value;
+   el.addEventListener("input",()=>{
+     const s=norm(el.value);
+     if(s===""||s==="-"||s==="."||s==="-.")return;
+     if(Number.isFinite(Number(s)))lastGood[id]=s;
+   });
+   el.addEventListener("change",()=>{
+     let n=Number(norm(el.value));
+     if(!Number.isFinite(n)){el.value=lastGood[id]??"0";return;}
+     if(id.startsWith("tstart")&&n<0)n=0;
+     el.value=String(n); lastGood[id]=el.value;
+     el.dispatchEvent(new Event("input",{bubbles:true}));
+   });
+ });
+})();
+</script>
+</body></html>
