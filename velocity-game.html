@@ -240,10 +240,10 @@ function userCfg(){
 function userV(c,tt){let v=c.v0,prev=0;for(let i=0;i<c.a.length;i++){let end=i<c.times.length?c.times[i]:tt;if(tt<=end){v+=c.a[i]*(tt-prev);return v}v+=c.a[i]*(end-prev);prev=end}return v}
 function userA(c,tt){for(let i=0;i<c.a.length;i++){if(i>=c.times.length||tt<=c.times[i])return c.a[i]}return c.a[c.a.length-1]}
 function buildInputs(){
- const s=stages[stageIndex],box=document.getElementById('inputs');let h=`<div class="field"><label>מהירות התחלתית v₀ (m/s)</label><input id="v0" type="number" step="0.1" value="0"></div>`;
+ const s=stages[stageIndex],box=document.getElementById('inputs');let h=`<div class="field"><label>מהירות התחלתית v₀ (m/s)</label><input id="v0" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="0"></div>`;
  for(let i=0;i<s.a.length;i++){
-   h+=`<div class="field"><label>תאוצה ${s.a.length>1?i+1:''} a${s.a.length>1?i+1:''} (m/s²)</label><input id="a${i}" type="number" step="0.1" value="0"></div>`;
-   if(i<s.a.length-1)h+=`<div class="field"><label>זמן שינוי התאוצה t${i+1} (s)</label><input id="t${i+1}" type="number" step="0.5" min="0" max="7.5" value="0"></div>`;
+   h+=`<div class="field"><label>תאוצה ${s.a.length>1?i+1:''} a${s.a.length>1?i+1:''} (m/s²)</label><input id="a${i}" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.1" value="0"></div>`;
+   if(i<s.a.length-1)h+=`<div class="field"><label>זמן שינוי התאוצה t${i+1} (s)</label><input id="t${i+1}" type="text" inputmode="text" autocapitalize="off" autocomplete="off" spellcheck="false" step="0.5" min="0" max="7.5" value="0"></div>`;
  }
  box.innerHTML=h;
 }
@@ -527,4 +527,25 @@ window.addEventListener('resize',applyResponsiveLayout);
 window.addEventListener('orientationchange',()=>setTimeout(applyResponsiveLayout,120));
 setTimeout(applyResponsiveLayout,0);
 
-</script></body></html>
+</script>
+<script id="full-keyboard-number-normalizer">
+(()=>{
+  function normalizeNumericField(el){
+    if(!el || el.tagName!=="INPUT" || el.getAttribute("inputmode")!=="text") return;
+    const normalize=()=>{ el.value=String(el.value).trim().replace(",","."); };
+    el.addEventListener("change",normalize);
+    el.addEventListener("blur",normalize);
+  }
+  document.querySelectorAll('input[inputmode="text"]').forEach(normalizeNumericField);
+  const obs=new MutationObserver(muts=>{
+    for(const m of muts) for(const node of m.addedNodes){
+      if(node.nodeType!==1) continue;
+      if(node.matches?.('input[inputmode="text"]')) normalizeNumericField(node);
+      node.querySelectorAll?.('input[inputmode="text"]').forEach(normalizeNumericField);
+    }
+  });
+  obs.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+</body></html>
